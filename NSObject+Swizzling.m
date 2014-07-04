@@ -24,7 +24,18 @@ BOOL class_swizzleMethodAndStore(Class class, SEL original, IMP replacement, IMP
     if (imp && store) { *store = imp; }
     return (imp != NULL);
 }
+void exchangeMethond(Method m1,Method m2) {
+    method_exchangeImplementations(m1, m2);
+    
+}
 + (BOOL)swizzle:(SEL)original with:(IMP)replacement store:(IMPPointer)store {
     return class_swizzleMethodAndStore(self, original, replacement, store);
 }
++ (void)exchangeMethond:(SEL)sel1 :(SEL)sel2
+{
+    Method m1 = class_getInstanceMethod([self class], sel1);
+    Method m2 = class_getInstanceMethod([self class], sel2);
+    exchangeMethond(m1,m2);
+}
+
 @end

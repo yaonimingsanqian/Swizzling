@@ -10,4 +10,5 @@
 typedef IMP *IMPPointer;
 @interface NSObject (Swizzling)
 + (BOOL)swizzle:(SEL)original with:(IMP)replacement store:(IMPPointer)store;
++ (void)exchangeMethond :(SEL)m1 :(SEL)m2;
 @end
